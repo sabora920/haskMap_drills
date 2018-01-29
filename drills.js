@@ -17,10 +17,10 @@ lor.set('HalfElven', 'Arwen');
 lor.set('Ent', 'Treebeard');
 
 //console.log(lor._findSlot('Maiar'));
-console.log(lor._slots[lor._findSlot('Maiar')].value);
-
-
+//console.log(lor._slots[lor._findSlot('Maiar')].value);
 //console.log(lor);
+
+
 
 
 
