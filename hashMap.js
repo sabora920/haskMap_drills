@@ -32,6 +32,17 @@ class HashMap {
         this.length++;
     }
 
+    remove(key) {
+        const index = this._findSlot(key);
+        const slot = this._slots[index];
+        if (slot === undefined) {
+            throw new Error('Key error');
+        }
+        slot.deleted = true;
+        this.length--;
+        this._deleted++;
+    }
+
     _findSlot(key) {
         const hash = HashMap._hashString(key); 
         const start = hash % this._capacity; 
@@ -47,6 +58,21 @@ class HashMap {
             const slot = this._slots[index];
             if (slot === undefined || slot.key == key) {
                 return index;
+            }
+        }
+    }
+    
+    _resize(size) {
+        const oldSlots = this._slots;
+        this._capacity = size;
+        // Reset the length - it will get rebuilt as you add the items back
+        this.length = 0;
+        this._deleted = 0;
+        this._slots = [];
+
+        for (const slot of oldSlots) {
+            if (slot !== undefined && !slot.deleted) {
+                this.set(slot.key, slot.value);
             }
         }
     }
