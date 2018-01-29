@@ -7,29 +7,36 @@ const HashMap = require('./HashMap.js');
 
 function isPalindrome(string){
   string = string.toLowerCase().trim();
-  
   let freq = new HashMap();
+
   for(let i=0; i<string.length; i++){       
     let letter = string.charAt(i);
     //console.log('this value', freq._slots[freq._findSlot(letter)]);
     if(freq._slots[freq._findSlot(letter)]){
-        
-      //console.log('hi');
       freq._slots[freq._findSlot(letter)].value++;
     } else {
       freq.set(letter, 1);
     }
     console.log(freq);
-    // return freq;
   }
-  //if more than 1 element has a value = 1, return false
-  for(let j = 0; j < freq._slots.length; j++) {
-    let count = 0;
-    if(freq._slots[j].value % 2 !== 0) {
-        count++;
-        if()
+
+  console.log(freq._slots.length);
+  let count = 0;
+  for(let j=0; j<freq._slots.length; j++){
+    //   console.log('this is inside the j for loop', freq._slots[j])
+      if(freq._slots[j] !== undefined){
+        //console.log('And again',freq._slots[j])
+            if(freq._slots[j].value % 2 !== 0){
+                count++
+            }
+      }
+  }
+  console.log(count)
+    if(count >= 2){
+        console.log('false');
+    } else {
+        console.log('true')
     }
-  }
 }
 
-isPalindrome('racecar');
+isPalindrome('rriiiaacce')
